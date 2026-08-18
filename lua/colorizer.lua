@@ -354,7 +354,8 @@ local function create_highlight(rgb_hex, options)
 		-- Create the highlight
 		highlight_name = make_highlight_name(rgb_hex, mode)
 		if mode == 'foreground' then
-			nvim.ex.highlight(highlight_name, "guifg=#"..rgb_hex)
+            -- Add italic to each highlight
+			nvim.ex.highlight(highlight_name, "guifg=#"..rgb_hex .. " gui=italic")
 		else
 			local r, g, b = rgb_hex:sub(1,2), rgb_hex:sub(3,4), rgb_hex:sub(5,6)
 			r, g, b = tonumber(r,16), tonumber(g,16), tonumber(b,16)
@@ -364,7 +365,8 @@ local function create_highlight(rgb_hex, options)
 			else
 				fg_color = "White"
 			end
-			nvim.ex.highlight(highlight_name, "guifg="..fg_color, "guibg=#"..rgb_hex)
+            -- Add italic to each highlight
+			nvim.ex.highlight(highlight_name, "guifg="..fg_color, "guibg=#"..rgb_hex .. " gui=italic")
 		end
 		HIGHLIGHT_CACHE[cache_key] = highlight_name
 	end
